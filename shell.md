@@ -6,6 +6,7 @@ Applies to both zsh and bash. Use whichever is available on the system.
 
 - Show: username, current directory path, git branch (if in a repo), current time (HH:MM:SS)
 - Colors: green for username, blue for directory path, yellow for git branch, cyan for time
+- Use standard ANSI color codes (30-37) only — see [terminal.md](terminal.md#ansi-color-compatibility) for why
 - End with appropriate prompt symbol (`$` or `%` for normal user, `#` for root)
 
 ## Completion
