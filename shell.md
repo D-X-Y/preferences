@@ -5,7 +5,7 @@ Applies to both zsh and bash. Use whichever is available on the system.
 ## Prompt
 
 - Show: username, current directory path, git branch (if in a repo), current time (HH:MM:SS)
-- Colors: blue for user@path, yellow for git branch, cyan for time
+- Colors: green for username, blue for directory path, yellow for git branch, cyan for time
 - End with appropriate prompt symbol (`$` or `%` for normal user, `#` for root)
 
 ## Completion

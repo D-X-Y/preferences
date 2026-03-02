@@ -16,12 +16,10 @@ Tools I expect to be installed on my development machines.
 
 ## Shell Plugins
 
-Install the appropriate variant for whichever shell is in use. For example:
-
-| Feature | zsh | bash |
-|---------|-----|------|
-| Inline suggestions (fish-style) | `zsh-autosuggestions` | `ble.sh` |
-| Syntax highlighting | `zsh-syntax-highlighting` | `ble.sh` |
+| Feature | Plugin |
+|---------|--------|
+| Inline suggestions (fish-style) | `zsh-autosuggestions` |
+| Syntax highlighting | `zsh-syntax-highlighting` |
 
 ## Nice to Have
 
