@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="popup.css">
+  <title>Screenshot to PDF</title>
+</head>
+<body>
+  <div class="header">
+    <h1>Screenshot to PDF</h1>
+  </div>
+
+  <div class="capture-buttons">
+    <button id="btn-visible" title="Capture visible area (⌥⇧S)">Visible</button>
+    <button id="btn-fullpage" title="Capture full page (scroll)">Full Page</button>
+    <button id="btn-selection" title="Select area to capture (⌥⇧A re-captures last area)">Selection</button>
+  </div>
+
+  <div class="queue-header">
+    <span id="queue-count">Queue (0)</span>
+    <button id="btn-clear" class="btn-clear" title="Clear all screenshots">Clear All</button>
+  </div>
+
+  <div id="queue-list" class="queue-list">
+    <div id="empty-state" class="empty-state">No screenshots yet. Capture one above.</div>
+  </div>
+
+  <div class="export-bar">
+    <button id="btn-export" class="btn-export" disabled>Export as PDF</button>
+  </div>
+
+  <div class="log-section">
+    <div class="log-header" id="log-toggle">
+      <span>Log</span>
+      <span id="log-arrow" class="log-arrow">&#9656;</span>
+    </div>
+    <div id="log-panel" class="log-panel hidden">
+      <div id="log-entries" class="log-entries"></div>
+      <button id="btn-clear-logs" class="btn-clear-logs">Clear Logs</button>
+    </div>
+  </div>
+
+  <div id="confirm-overlay" class="confirm-overlay hidden">
+    <div class="confirm-dialog">
+      <p>Clear all screenshots?</p>
+      <div class="confirm-actions">
+        <button id="confirm-yes" class="btn-danger">Clear</button>
+        <button id="confirm-no">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="db.js"></script>
+  <script src="popup.js"></script>
+  <script src="lib/jspdf.umd.min.js"></script>
+</body>
+</html>

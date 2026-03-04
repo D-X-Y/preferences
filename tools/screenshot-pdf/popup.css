@@ -1,0 +1,352 @@
+:root {
+  --bg: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --text: #1a1a1a;
+  --text-muted: #666666;
+  --border: #e0e0e0;
+  --accent: #4A90D9;
+  --accent-hover: #357ABD;
+  --danger: #D94A4A;
+  --danger-hover: #BD3535;
+  --item-bg: #ffffff;
+  --item-hover: #f0f4f8;
+  --shadow: rgba(0, 0, 0, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1e1e1e;
+    --bg-secondary: #2a2a2a;
+    --text: #e0e0e0;
+    --text-muted: #999999;
+    --border: #3a3a3a;
+    --accent: #5BA0E0;
+    --accent-hover: #4A90D9;
+    --danger: #E05B5B;
+    --danger-hover: #D94A4A;
+    --item-bg: #2a2a2a;
+    --item-hover: #333333;
+    --shadow: rgba(0, 0, 0, 0.3);
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 360px;
+  min-height: 200px;
+  max-height: 600px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  color: var(--text);
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.header {
+  padding: 12px 16px 8px;
+}
+
+.header h1 {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.capture-buttons {
+  display: flex;
+  gap: 8px;
+  padding: 0 16px 12px;
+}
+
+.capture-buttons button {
+  flex: 1;
+  padding: 8px 4px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-secondary);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.capture-buttons button:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.queue-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-secondary);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.btn-clear {
+  background: none;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.btn-clear:hover {
+  background: var(--danger);
+  color: #fff;
+}
+
+.queue-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px 0;
+  min-height: 60px;
+  max-height: 280px;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 24px 16px;
+  font-size: 12px;
+}
+
+.queue-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  cursor: grab;
+  transition: background 0.1s;
+  border-bottom: 1px solid var(--border);
+}
+
+.queue-item:hover {
+  background: var(--item-hover);
+}
+
+.queue-item.dragging {
+  opacity: 0.4;
+}
+
+.queue-item .drag-handle {
+  color: var(--text-muted);
+  font-size: 14px;
+  cursor: grab;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.queue-item .thumb {
+  width: 48px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.queue-item .info {
+  flex: 1;
+  min-width: 0;
+}
+
+.queue-item .label {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.queue-item .time {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.queue-item .btn-delete {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.queue-item .btn-delete:hover {
+  color: var(--danger);
+  background: var(--bg-secondary);
+}
+
+.export-bar {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+}
+
+.btn-export {
+  width: 100%;
+  padding: 10px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-export:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.btn-export:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Confirmation overlay */
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.confirm-overlay.hidden {
+  display: none;
+}
+
+.confirm-dialog {
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 20px var(--shadow);
+  text-align: center;
+  min-width: 200px;
+}
+
+.confirm-dialog p {
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.confirm-actions button {
+  padding: 6px 16px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-secondary);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.btn-danger {
+  background: var(--danger) !important;
+  color: #fff !important;
+  border-color: var(--danger) !important;
+}
+
+.btn-danger:hover {
+  background: var(--danger-hover) !important;
+}
+
+/* Log panel */
+.log-section {
+  border-top: 1px solid var(--border);
+}
+
+.log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 16px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  user-select: none;
+}
+
+.log-header:hover {
+  color: var(--text);
+}
+
+.log-arrow {
+  font-size: 10px;
+  transition: transform 0.15s;
+}
+
+.log-arrow.open {
+  transform: rotate(90deg);
+}
+
+.log-panel {
+  max-height: 150px;
+  overflow-y: auto;
+  padding: 0 16px 8px;
+}
+
+.log-panel.hidden {
+  display: none;
+}
+
+.log-entries {
+  font-family: "SF Mono", Menlo, monospace;
+  font-size: 10px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.log-entry {
+  word-break: break-word;
+  white-space: normal;
+}
+
+.log-entry.error {
+  color: var(--danger);
+}
+
+.log-empty {
+  color: var(--text-muted);
+  font-size: 10px;
+  font-style: italic;
+}
+
+.btn-clear-logs {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 10px;
+  padding: 4px 0 0;
+}
+
+.btn-clear-logs:hover {
+  color: var(--danger);
+}
