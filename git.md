@@ -11,6 +11,7 @@
 
 ## Behavior
 
+- Display non-ASCII paths (e.g., Chinese characters) as-is instead of quoted octal (`core.quotePath = false`)
 - Default branch name: `main`
 - Pull strategy: rebase (not merge)
 - Push: auto-setup remote tracking branch on first push
