@@ -217,6 +217,7 @@ btnExport.addEventListener("click", async () => {
     allData.sort((a, b) => a.order - b.order);
 
     const pxToMm = 0.264583;
+    if (!window.jspdf) throw new Error("jsPDF library not loaded");
     const { jsPDF } = window.jspdf;
     let doc = null;
 
