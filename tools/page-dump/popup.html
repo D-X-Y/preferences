@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { width: 400px; min-height: 120px; padding: 12px; font-family: sans-serif; font-size: 13px; }
+    .hidden { display: none !important; }
+    #crash { color: red; padding: 8px; white-space: pre-wrap; word-break: break-word; font-size: 11px; }
+  </style>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div id="header">
+    <h1 style="font-size:15px;margin-bottom:4px;">Page Dump</h1>
+    <p id="status">Checking page…</p>
+  </div>
+
+  <!-- ChatGPT conversation preview -->
+  <div id="preview-chatgpt" class="hidden">
+    <div id="meta">
+      <div id="conv-title" class="meta-field"></div>
+      <div id="conv-model" class="meta-field secondary"></div>
+      <div id="conv-stats" class="meta-field secondary"></div>
+    </div>
+    <div id="messages-preview"></div>
+    <div id="actions-chatgpt" class="actions">
+      <button id="btn-markdown" class="btn primary">Markdown</button>
+      <button id="btn-json" class="btn">JSON</button>
+      <button id="btn-html" class="btn">HTML</button>
+    </div>
+  </div>
+
+  <!-- Google Docs preview -->
+  <div id="preview-gdocs" class="hidden">
+    <div id="gdocs-meta">
+      <div id="gdocs-title" class="meta-field"></div>
+      <div id="gdocs-stats" class="meta-field secondary"></div>
+    </div>
+    <div id="gdocs-content-preview"></div>
+    <div id="actions-gdocs" class="actions">
+      <button id="btn-gdocs-markdown" class="btn primary">Markdown</button>
+      <button id="btn-gdocs-text" class="btn">Plain Text</button>
+      <button id="btn-gdocs-html" class="btn">HTML</button>
+      <button id="btn-gdocs-json" class="btn">JSON</button>
+    </div>
+  </div>
+
+  <div id="copy-feedback" class="hidden">Downloaded!</div>
+
+  <div id="error" class="hidden">
+    <p id="error-msg"></p>
+  </div>
+
+  <div id="crash" class="hidden"></div>
+
+  <script src="error-handler.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

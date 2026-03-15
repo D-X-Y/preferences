@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Page Dump",
+  "version": "2.0.0",
+  "description": "Extract and export content from ChatGPT share links and Google Docs",
+  "permissions": ["activeTab", "scripting", "tabs"],
+  "host_permissions": [
+    "https://chatgpt.com/*",
+    "https://docs.google.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://chatgpt.com/share/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://docs.google.com/document/*"],
+      "js": ["content-gdocs.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
